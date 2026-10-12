@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:omnichannel:schemas:unified_lead_ticket",
+  "title": "Unified Lead Ticket",
+  "description": "Canonical lead and support ticket produced after channel ingestion, intent classification, and Shopify customer resolution. Every downstream system (Google Sheets CRM log, Google Chat alert, agent desktop) consumes this shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ticket_id",
+    "source_channel",
+    "customer",
+    "inquiry",
+    "dispatch"
+  ],
+  "properties": {
+    "ticket_id": {
+      "type": "string",
+      "description": "Stable ticket identifier. Format TKT-YYYY-NNNN.",
+      "pattern": "^TKT-[0-9]{4}-[0-9]{4,}$",
+      "examples": ["TKT-2026-1001"]
+    },
+    "source_channel": {
+      "type": "string",
+      "description": "Originating customer channel after transport normalization. Gmail is the transport for Shopify Inbox notification mail; shopify_inbox is used when the message is taken from that notification body.",
+      "enum": [
+        "instagram_dm",
+        "whatsapp_zoko",
+        "gmail",
+        "shopify_inbox"
+      ]
+    },
+    "customer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "handle_or_phone", "shopify_customer_id"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name captured from the source payload or parsed from a Shopify Inbox notification.",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "handle_or_phone": {
+          "type": "string",
+          "description": "Best stable contact key for the channel: Instagram handle, E.164 phone, or email address.",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "shopify_customer_id": {
+          "type": ["string", "null"],
+          "description": "Shopify Admin GID when a phone or email match exists. Null means a net-new contact.",
+          "pattern": "^gid://shopify/Customer/[0-9]+$",
+          "examples": ["gid://shopify/Customer/1001904", null]
+        }
+      }
+    },
+    "inquiry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw_text", "is_actionable_query", "vertical"],
+      "properties": {
+        "raw_text": {
+          "type": "string",
+          "description": "Customer message with transport boilerplate removed.",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "is_actionable_query": {
+          "type": "boolean",
+          "description": "True when the intent gate (OpenRouter classifier in production, regex stand-in here) decides an agent should act."
+        },
+        "vertical": {
+          "type": "string",
+          "description": "Routing vertical used to pick the on-call agent. Typical values: apparel, beauty, home, post_purchase, general.",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-z0-9_]+$"
+        }
+      }
+    },
+    "dispatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logged_to_google_sheet",
+        "google_chat_alert_sent",
+        "assigned_agent"
+      ],
+      "properties": {
+        "logged_to_google_sheet": {
+          "type": "boolean",
+          "description": "True after the CRM row append succeeds."
+        },
+        "google_chat_alert_sent": {
+          "type": "boolean",
+          "description": "True after the interactive Google Chat card is posted."
+        },
+        "assigned_agent": {
+          "type": ["string", "null"],
+          "description": "Agent or queue the card is routed to. Null leaves the ticket in the unassigned pool.",
+          "maxLength": 120
+        }
+      }
+    }
+  }
+}

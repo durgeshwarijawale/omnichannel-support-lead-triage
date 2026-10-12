@@ -1,0 +1,33 @@
+{
+  "version": "2.0",
+  "event": "messaging_instagram",
+  "delivery": "manychat_external_request",
+  "page_id": "17841405839210019",
+  "timestamp": 1760180400,
+  "subscriber": {
+    "id": "mc_884211",
+    "key": "user:7241193388123456",
+    "ig_id": "7241193388123456",
+    "ig_username": "aisha.styles.demo",
+    "first_name": "Aisha",
+    "last_name": "Khan",
+    "name": "Aisha Khan",
+    "gender": "",
+    "locale": "en_IN",
+    "language": "en",
+    "timezone": "Asia/Kolkata",
+    "profile_pic": "https://cdn.example.com/avatars/aisha-styles-demo.jpg",
+    "live_chat_url": "https://app.manychat.com/fb17841405839210019/chat/mc_884211",
+    "last_input_text": "Hi! Is the olive linen cargo set still available in size M? I can pay today if you hold it.",
+    "last_interaction": "2026-10-11T08:40:00.000Z",
+    "subscribed": "2026-10-11T08:39:41.000Z",
+    "phone": null,
+    "email": null,
+    "optin_phone": false,
+    "optin_email": false,
+    "custom_fields": {
+      "source_campaign": "ig_reel_olive_cargo",
+      "entry_point": "story_reply"
+    }
+  }
+}

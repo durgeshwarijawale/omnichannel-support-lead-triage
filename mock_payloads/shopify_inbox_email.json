@@ -1,0 +1,16 @@
+{
+  "channel_transport": "gmail",
+  "gmail_message_id": "18f2c0a1b9e4d7aa",
+  "thread_id": "18f2c0a1b9e4d700",
+  "label_ids": ["INBOX", "CATEGORY_UPDATES", "SHOPIFY_INBOX"],
+  "internal_date_ms": 1760181900000,
+  "headers": {
+    "from": "Shopify <inbox-noreply@shopify.com>",
+    "to": "care@ateliernorth.example",
+    "subject": "New message from Priya Nair — Shopify Inbox",
+    "date": "Sun, 11 Oct 2026 14:25:00 +0530",
+    "message_id": "<inbox-88421@shopify.com>"
+  },
+  "snippet": "Hi, I placed order #1842 three days ago and the tracking still says label created.",
+  "body_text": "You received a new message in Shopify Inbox.\n\nFrom: Priya Nair <priya.nair@example.com>\n\n\"Hi, I placed order #1842 three days ago and the tracking still says label created. Can someone check this for me before the weekend?\"\n\nReply in Shopify Inbox:\nhttps://admin.shopify.com/store/atelier-north/inbox/88421\n\n— Shopify\ninbox-noreply@shopify.com\n"
+}

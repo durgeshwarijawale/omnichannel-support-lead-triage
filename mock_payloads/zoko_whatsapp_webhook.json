@@ -1,0 +1,27 @@
+{
+  "id": "evt_01J9ZOKOINBOUND8842",
+  "event": "message.inbound",
+  "createdAt": "2026-10-11T08:52:08.441Z",
+  "data": {
+    "messageId": "wamid.HBgMOTE5ODAwMDExMTIyFQIAEhgWM0VCMEYzRjA1QkY4Q0E2NzA2AA==",
+    "conversationId": "conv_22ab91",
+    "channel": "whatsapp",
+    "channelId": "ch_atelier_north_wa",
+    "direction": "inbound",
+    "type": "text",
+    "text": "Hi, my order 1842 still shows label created. Can you check the tracking?",
+    "timestamp": 1760181128,
+    "customer": {
+      "id": "cus_7f3a91",
+      "name": "Rahul Mehta",
+      "phoneNumber": "+919800011122"
+    },
+    "context": {
+      "replyToMessageId": null,
+      "referral": {
+        "source": "whatsapp_status",
+        "headline": "Olive linen drop"
+      }
+    }
+  }
+}
